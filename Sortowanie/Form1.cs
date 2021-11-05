@@ -29,7 +29,7 @@ namespace Sortowanie
         public void ButtonBubbleSort_Click(object sender, EventArgs e)
         {
 
-            int[] Table = new int[120];
+            int[] Table = new int[1200];
             Random rnd = new Random();
             for (int i = 0; i < Table.Length; i++)
             {
@@ -41,8 +41,9 @@ namespace Sortowanie
                 if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
                 Liczby.Text = Liczby.Text + " " + Table[y].ToString();
             }
-
+            Czas.Text = "Wygenerowano";
             var CzasStart = DateTime.Now;
+
             bool Sortuj = true;
             int x = 0;
             int p = 1;
@@ -63,7 +64,7 @@ namespace Sortowanie
             }
             var CzasKoniec = DateTime.Now;
             var CzasTrwania = CzasKoniec - CzasStart;
-            Czas.Text = CzasTrwania.ToString();
+            Czas.Text = "Czas sortowania: "+CzasTrwania.ToString();
 
             Wynik.Text = "";
             for (int y = 0; y < Table.Length; y++)

@@ -28,8 +28,8 @@ namespace Sortowanie
 
         public void ButtonBubbleSort_Click(object sender, EventArgs e)
         {
-
-            int[] Table = new int[1200];
+            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
+            int[] Table = new int[generujliczby];
             Random rnd = new Random();
             for (int i = 0; i < Table.Length; i++)
             {

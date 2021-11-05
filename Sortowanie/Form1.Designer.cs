@@ -31,6 +31,8 @@ namespace Sortowanie
         {
             this.ButtonBubbleSort = new System.Windows.Forms.Button();
             this.Wynik = new System.Windows.Forms.Label();
+            this.Liczby = new System.Windows.Forms.Label();
+            this.Czas = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ButtonBubbleSort
@@ -46,17 +48,40 @@ namespace Sortowanie
             // Wynik
             // 
             this.Wynik.AutoSize = true;
-            this.Wynik.Location = new System.Drawing.Point(12, 199);
+            this.Wynik.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Wynik.Location = new System.Drawing.Point(12, 270);
             this.Wynik.Name = "Wynik";
-            this.Wynik.Size = new System.Drawing.Size(23, 15);
+            this.Wynik.Size = new System.Drawing.Size(30, 21);
             this.Wynik.TabIndex = 1;
             this.Wynik.Text = "nic";
+            // 
+            // Liczby
+            // 
+            this.Liczby.AutoSize = true;
+            this.Liczby.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Liczby.Location = new System.Drawing.Point(12, 121);
+            this.Liczby.Name = "Liczby";
+            this.Liczby.Size = new System.Drawing.Size(30, 21);
+            this.Liczby.TabIndex = 2;
+            this.Liczby.Text = "nic";
+            this.Liczby.Click += new System.EventHandler(this.Liczby_Click);
+            // 
+            // Czas
+            // 
+            this.Czas.AutoSize = true;
+            this.Czas.Location = new System.Drawing.Point(190, 16);
+            this.Czas.Name = "Czas";
+            this.Czas.Size = new System.Drawing.Size(16, 15);
+            this.Czas.TabIndex = 3;
+            this.Czas.Text = "...";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Czas);
+            this.Controls.Add(this.Liczby);
             this.Controls.Add(this.Wynik);
             this.Controls.Add(this.ButtonBubbleSort);
             this.Name = "Form1";
@@ -70,6 +95,8 @@ namespace Sortowanie
 
         private System.Windows.Forms.Button ButtonBubbleSort;
         private System.Windows.Forms.Label Wynik;
+        private System.Windows.Forms.Label Liczby;
+        private System.Windows.Forms.Label Czas;
     }
 }
 

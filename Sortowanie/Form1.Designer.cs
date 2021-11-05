@@ -30,6 +30,7 @@ namespace Sortowanie
         private void InitializeComponent()
         {
             this.ButtonBubbleSort = new System.Windows.Forms.Button();
+            this.Wynik = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ButtonBubbleSort
@@ -40,22 +41,35 @@ namespace Sortowanie
             this.ButtonBubbleSort.TabIndex = 0;
             this.ButtonBubbleSort.Text = "Sortuj Bąbelkowo";
             this.ButtonBubbleSort.UseVisualStyleBackColor = true;
+            this.ButtonBubbleSort.Click += new System.EventHandler(this.ButtonBubbleSort_Click);
+            // 
+            // Wynik
+            // 
+            this.Wynik.AutoSize = true;
+            this.Wynik.Location = new System.Drawing.Point(12, 199);
+            this.Wynik.Name = "Wynik";
+            this.Wynik.Size = new System.Drawing.Size(23, 15);
+            this.Wynik.TabIndex = 1;
+            this.Wynik.Text = "nic";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Wynik);
             this.Controls.Add(this.ButtonBubbleSort);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button ButtonBubbleSort;
+        private System.Windows.Forms.Label Wynik;
     }
 }
 

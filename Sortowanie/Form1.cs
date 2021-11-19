@@ -79,5 +79,54 @@ namespace Sortowanie
         {
 
         }
+
+        private void GenerujLiczby_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
+            int[] Table = new int[generujliczby];
+            Random rnd = new Random();
+            for (int i = 0; i < Table.Length; i++)
+            {
+                Table[i] = rnd.Next(1, 100);
+            }
+            Liczby.Text = "";
+            for (int y = 0; y < Table.Length; y++)
+            {
+                if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
+                Liczby.Text = Liczby.Text + " " + Table[y].ToString();
+            }
+            Czas.Text = "Wygenerowano";
+            var CzasStart = DateTime.Now;
+
+            int Bubble(int[] Tabela)
+            {
+                if (Tabela.Length == 1) { return 0; }
+                int RozmiarTabeli = Tabela.Length;
+                int[] Table = new int[generujliczby];
+            }
+
+            bool Sortuj = true;
+
+            while (Sortuj)
+            {
+                    Bubble(Table);
+            }
+
+            var CzasKoniec = DateTime.Now;
+            var CzasTrwania = CzasKoniec - CzasStart;
+            Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();
+
+            Wynik.Text = "";
+            for (int y = 0; y < Table.Length; y++)
+            {
+                if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
+                Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+            }
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace Sortowanie
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.ButtonQuickSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownLiczby)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@ namespace Sortowanie
             // 
             this.ButtonBubbleSort.Location = new System.Drawing.Point(12, 12);
             this.ButtonBubbleSort.Name = "ButtonBubbleSort";
-            this.ButtonBubbleSort.Size = new System.Drawing.Size(172, 23);
+            this.ButtonBubbleSort.Size = new System.Drawing.Size(109, 23);
             this.ButtonBubbleSort.TabIndex = 0;
             this.ButtonBubbleSort.Text = "Sortuj Bąbelkowo";
             this.ButtonBubbleSort.UseVisualStyleBackColor = true;
@@ -74,7 +75,7 @@ namespace Sortowanie
             // Czas
             // 
             this.Czas.AutoSize = true;
-            this.Czas.Location = new System.Drawing.Point(190, 16);
+            this.Czas.Location = new System.Drawing.Point(256, 16);
             this.Czas.Name = "Czas";
             this.Czas.Size = new System.Drawing.Size(16, 15);
             this.Czas.TabIndex = 3;
@@ -129,11 +130,22 @@ namespace Sortowanie
             this.label3.TabIndex = 7;
             this.label3.Text = "Input";
             // 
+            // ButtonQuickSort
+            // 
+            this.ButtonQuickSort.Location = new System.Drawing.Point(127, 12);
+            this.ButtonQuickSort.Name = "ButtonQuickSort";
+            this.ButtonQuickSort.Size = new System.Drawing.Size(129, 23);
+            this.ButtonQuickSort.TabIndex = 8;
+            this.ButtonQuickSort.Text = "Quick";
+            this.ButtonQuickSort.UseVisualStyleBackColor = true;
+            this.ButtonQuickSort.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.ButtonQuickSort);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -160,6 +172,7 @@ namespace Sortowanie
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button ButtonQuickSort;
     }
 }
 

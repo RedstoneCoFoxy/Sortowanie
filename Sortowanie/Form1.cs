@@ -103,18 +103,46 @@ namespace Sortowanie
             Czas.Text = "Wygenerowano";
             var CzasStart = DateTime.Now;
 
-            int Bubble(int[] Tabela)
+            int[] Bubble(int[] Tabela)
             {
-                if (Tabela.Length == 1) { return 0; }
-                int RozmiarTabeli = Tabela.Length;
-                int[] Table = new int[generujliczby];
+                if (Tabela.Length <= 1) { return Tabela; } else { 
+                    int RozmiarTabeli = Tabela.Length;
+                    int pivot = Tabela.Length- 1;
+                    int biggerthanpivot = 0;
+                    for(int i=0; i < Tabela.Length - 1; i++) { if (Tabela[i]>pivot) { biggerthanpivot++; } }
+                    int[] Lewa = new int[(Tabela.Length - 1)-biggerthanpivot];
+                    int[] Prawa = new int[biggerthanpivot];
+                    for (int i = 0; i > Tabela.Length - 1; i++) {
+                        int p = 0;
+                        int l = 0;
+                        if (Tabela[i] > pivot) { Prawa[p] = Tabela[i];p++; } else { Lewa[l] = Tabela[i];l++; }
+                    }
+                    Lewa=Bubble(Lewa);
+                    Prawa=Bubble(Prawa);
+                    for (int i = 1; i < Tabela.Length; i++) {
+                        int l = 0;
+                        int p=0;
+                        /*if( l < Lewa.Length)
+                        {
+                            Tabela[i] = Lewa[0];
+                        }
+                        l++;
+                        if (l >= Lewa.Length)
+                        {
+                            Tabela[i] = Prawa[0];
+                            p++;
+                        }*/
+                        Tabela[i] = 1;
+                    }
+                    return Tabela;
+                }
             }
 
             bool Sortuj = true;
 
             while (Sortuj)
             {
-                    Bubble(Table);
+                    Table=Bubble(Table);
             }
 
             var CzasKoniec = DateTime.Now;

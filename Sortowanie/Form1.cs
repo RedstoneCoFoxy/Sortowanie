@@ -17,6 +17,7 @@ namespace Sortowanie
             InitializeComponent();
             
         }
+
         public void Begin()
         {
             
@@ -26,6 +27,10 @@ namespace Sortowanie
 
         }
 
+        public void GenerujZestawLiczb()
+        {
+            
+        }
         public void ButtonBubbleSort_Click(object sender, EventArgs e)
         {
             int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
@@ -105,46 +110,145 @@ namespace Sortowanie
 
             int[] Bubble(int[] Tabela)
             {
-                if (Tabela.Length <= 1) { return Tabela; } else { 
-                    int RozmiarTabeli = Tabela.Length;
-                    int pivot = Tabela.Length- 1;
-                    int biggerthanpivot = 0;
-                    for(int i=0; i < Tabela.Length - 1; i++) { if (Tabela[i]>pivot) { biggerthanpivot++; } }
-                    int[] Lewa = new int[(Tabela.Length - 1)-biggerthanpivot];
-                    int[] Prawa = new int[biggerthanpivot];
-                    for (int i = 0; i > Tabela.Length - 1; i++) {
-                        int p = 0;
-                        int l = 0;
-                        if (Tabela[i] > pivot) { Prawa[p] = Tabela[i];p++; } else { Lewa[l] = Tabela[i];l++; }
-                    }
-                    Lewa=Bubble(Lewa);
-                    Prawa=Bubble(Prawa);
-                    for (int i = 1; i < Tabela.Length; i++) {
-                        int l = 0;
-                        int p=0;
-                        /*if( l < Lewa.Length)
+                    if (Tabela.Length == 2)
+                    {
+                        if (Tabela[0] > Tabela[1])
                         {
-                            Tabela[i] = Lewa[0];
+                            int x = Tabela[1];
+                            Tabela[1] = Tabela[0];
+                            Tabela[0] = x;
                         }
-                        l++;
-                        if (l >= Lewa.Length)
-                        {
-                            Tabela[i] = Prawa[0];
-                            p++;
-                        }*/
-                        Tabela[i] = 1;
+                    xd.Text = "dupa";
+                        return Tabela;
                     }
-                    return Tabela;
+
+                    int pivot = Tabela[Tabela.Length - 1];
+                    int WiekszeOdPivota = 0;
+                    for (int y = 0; y < Tabela.Length; y++)
+                    {
+                        if (Tabela[y] >= pivot) { WiekszeOdPivota++; }
+                    }
+                    int[] Prawy = new int[WiekszeOdPivota]; 
+                    int[] Lewy = new int[Tabela.Length - WiekszeOdPivota]; 
+                    int l = 0;
+                    int p = 0;
+
+                    for (int y = 0; y < Tabela.Length; y++)
+                    {
+                        if (Tabela[y] >= pivot) 
+                        { 
+                        if (Lewy.Length != 0){ Lewy[l] = Tabela[y];
+                            l++;
+                            if (l >= Lewy.Length) { l = Lewy.Length - 1; }
+                            } 
+                        }
+                        else 
+                        {
+                        if (Prawy.Length!=0) { Prawy[p] = Tabela[y]; 
+                            p++;
+                            if (p >= Prawy.Length) { p = Prawy.Length - 1; }
+                            } 
+                        }
+                    }
+
+                    xd.Text = "";
+                    xd.Text = xd.Text+ (Tabela.Length - WiekszeOdPivota).ToString() + " " + WiekszeOdPivota.ToString() + "\n ";
+                    xd.Text = xd.Text+ Lewy.Length.ToString()+ " "+ Prawy.Length.ToString() + "\n";
+                    for (int y = 0; y < Lewy.Length; y++)
+                    {
+                        xd.Text = xd.Text + "L " + Lewy[y].ToString();
+                    }
+                    xd.Text = xd.Text+"\n ";
+                    for (int y = 0; y < Prawy.Length; y++)
+                    {
+                        xd.Text = xd.Text + "P " + Prawy[y].ToString();
+                    }
+
+                    if (Lewy.Length > 1) { Lewy=Bubble(Lewy); }
+                    if (Prawy.Length > 1) { Prawy = Bubble(Prawy); }
+                /*
+                for (int y = 0; y < Lewy.Length; y++)
+                {
+                    xd.Text = xd.Text + "L " + Lewy[y].ToString();
                 }
+                xd.Text = "\n";
+                for (int y = 0; y < Prawy.Length; y++)
+                {
+                    xd.Text = xd.Text + "P " + Prawy[y].ToString();
+                }*/
+                if (Lewy.Length == 0) { Tabela = Prawy; }
+                    if (Prawy.Length == 0) { Tabela = Lewy; }
+                    if (Lewy.Length != 0 && Prawy.Length != 0) { Tabela = Lewy.Concat(Prawy).ToArray(); }
+
+                    return Tabela;               
             }
+
+            Table=Bubble(Table);
+
+
+            var CzasKoniec = DateTime.Now;
+            var CzasTrwania = CzasKoniec - CzasStart;
+            Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();
+
+            Wynik.Text = "";
+            for (int y = 0; y < Table.Length; y++)
+            {
+                if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
+                Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+            }
+        }
+
+        private void Generuj_Click(object sender, EventArgs e)
+        {
+            GenerujZestawLiczb();
+        }
+
+        private void ButtonInsertSort_Click(object sender, EventArgs e)
+        {
+            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
+            int[] Table = new int[generujliczby];
+            Random rnd = new Random();
+            for (int i = 0; i < Table.Length; i++)
+            {
+                Table[i] = rnd.Next(1, 100);
+            }
+            Liczby.Text = "";
+            for (int y = 0; y < Table.Length; y++)
+            {
+                if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
+                Liczby.Text = Liczby.Text + " " + Table[y].ToString();
+            }
+            Czas.Text = "Wygenerowano";
+            var CzasStart = DateTime.Now;
 
             bool Sortuj = true;
+            int B = 1;
+            while ( B < Table.Length)
+                {
+                    Sortuj = true;
+                    int ii = B;
+                    while (Sortuj)
+                    {
 
-            while (Sortuj)
-            {
-                    Table=Bubble(Table);
+                        int xx = 0;
+                        
+                        if (Table[ii-1] > Table[ii] )
+                        {
+                            xx = Table[ii];
+                            Table[ii ] = Table[ii - 1];
+                            Table[ii- 1] = xx;
+                            ii--;
+                            if (ii == 0) { Sortuj = false; }
+                        }
+                        else
+                        {
+                            Sortuj = false;
+                        }
+                        
+                    }
+                    B++;
             }
-
+            //Table=Table.Reverse().ToArray();
             var CzasKoniec = DateTime.Now;
             var CzasTrwania = CzasKoniec - CzasStart;
             Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();

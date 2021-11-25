@@ -38,6 +38,8 @@ namespace Sortowanie
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ButtonQuickSort = new System.Windows.Forms.Button();
+            this.xd = new System.Windows.Forms.Label();
+            this.ButtonInsertSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownLiczby)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +49,7 @@ namespace Sortowanie
             this.ButtonBubbleSort.Name = "ButtonBubbleSort";
             this.ButtonBubbleSort.Size = new System.Drawing.Size(109, 23);
             this.ButtonBubbleSort.TabIndex = 0;
-            this.ButtonBubbleSort.Text = "Sortuj Bąbelkowo";
+            this.ButtonBubbleSort.Text = "Bubble";
             this.ButtonBubbleSort.UseVisualStyleBackColor = true;
             this.ButtonBubbleSort.Click += new System.EventHandler(this.ButtonBubbleSort_Click);
             // 
@@ -55,7 +57,7 @@ namespace Sortowanie
             // 
             this.Wynik.AutoSize = true;
             this.Wynik.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Wynik.Location = new System.Drawing.Point(12, 60);
+            this.Wynik.Location = new System.Drawing.Point(12, 89);
             this.Wynik.Name = "Wynik";
             this.Wynik.Size = new System.Drawing.Size(30, 21);
             this.Wynik.TabIndex = 1;
@@ -65,7 +67,7 @@ namespace Sortowanie
             // 
             this.Liczby.AutoSize = true;
             this.Liczby.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Liczby.Location = new System.Drawing.Point(619, 60);
+            this.Liczby.Location = new System.Drawing.Point(598, 89);
             this.Liczby.Name = "Liczby";
             this.Liczby.Size = new System.Drawing.Size(30, 21);
             this.Liczby.TabIndex = 2;
@@ -83,14 +85,14 @@ namespace Sortowanie
             // 
             // NumericUpDownLiczby
             // 
-            this.NumericUpDownLiczby.Location = new System.Drawing.Point(519, 14);
+            this.NumericUpDownLiczby.Location = new System.Drawing.Point(636, 14);
             this.NumericUpDownLiczby.Maximum = new decimal(new int[] {
             1410065408,
             2,
             0,
             0});
             this.NumericUpDownLiczby.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             0});
@@ -98,7 +100,7 @@ namespace Sortowanie
             this.NumericUpDownLiczby.Size = new System.Drawing.Size(120, 23);
             this.NumericUpDownLiczby.TabIndex = 4;
             this.NumericUpDownLiczby.Value = new decimal(new int[] {
-            10,
+            5,
             0,
             0,
             0});
@@ -106,7 +108,7 @@ namespace Sortowanie
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(374, 16);
+            this.label1.Location = new System.Drawing.Point(491, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 15);
             this.label1.TabIndex = 5;
@@ -115,7 +117,7 @@ namespace Sortowanie
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 45);
+            this.label2.Location = new System.Drawing.Point(12, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 6;
@@ -124,7 +126,7 @@ namespace Sortowanie
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(619, 45);
+            this.label3.Location = new System.Drawing.Point(598, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 15);
             this.label3.TabIndex = 7;
@@ -140,11 +142,32 @@ namespace Sortowanie
             this.ButtonQuickSort.UseVisualStyleBackColor = true;
             this.ButtonQuickSort.Click += new System.EventHandler(this.button1_Click);
             // 
+            // xd
+            // 
+            this.xd.AutoSize = true;
+            this.xd.Location = new System.Drawing.Point(12, 363);
+            this.xd.Name = "xd";
+            this.xd.Size = new System.Drawing.Size(10, 15);
+            this.xd.TabIndex = 9;
+            this.xd.Text = ".";
+            // 
+            // ButtonInsertSort
+            // 
+            this.ButtonInsertSort.Location = new System.Drawing.Point(12, 41);
+            this.ButtonInsertSort.Name = "ButtonInsertSort";
+            this.ButtonInsertSort.Size = new System.Drawing.Size(109, 23);
+            this.ButtonInsertSort.TabIndex = 10;
+            this.ButtonInsertSort.Text = "Insert";
+            this.ButtonInsertSort.UseVisualStyleBackColor = true;
+            this.ButtonInsertSort.Click += new System.EventHandler(this.ButtonInsertSort_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.ButtonInsertSort);
+            this.Controls.Add(this.xd);
             this.Controls.Add(this.ButtonQuickSort);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -173,6 +196,8 @@ namespace Sortowanie
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button ButtonQuickSort;
+        private System.Windows.Forms.Label xd;
+        private System.Windows.Forms.Button ButtonInsertSort;
     }
 }
 

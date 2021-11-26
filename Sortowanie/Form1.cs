@@ -268,7 +268,7 @@ namespace Sortowanie
             Random rnd = new Random();
             for (int i = 0; i < Table.Length; i++)
             {
-                Table[i] = rnd.Next(1, 100);
+                Table[i] = rnd.Next(1, 10);
             }
             Liczby.Text = "";
             for (int y = 0; y < Table.Length; y++)
@@ -278,11 +278,13 @@ namespace Sortowanie
             }
             Czas.Text = "Wygenerowano";
             var CzasStart = DateTime.Now;
+            xd.Text = "";
                int[] MergeSort(int[] Tabela)
                 {
                     if (Tabela.Length == 1)
                     {
-                        return Tabela;
+                    return Tabela;
+
                     }
                     if (Tabela.Length == 2)
                     {
@@ -292,7 +294,7 @@ namespace Sortowanie
                             Tabela[0] = Tabela[1];
                             Tabela[1] = o;
                         }
-                        return Tabela;
+                    return Tabela;
                     }
                     int n = Tabela.Length / 2;
                     int[] Left = new int[n];
@@ -307,44 +309,17 @@ namespace Sortowanie
                 Right = MergeSort(Right);
                 Tabela = Left.Concat(Right).ToArray();
                 int[] Temp = new int[Tabela.Length];
-                int ll = 0;
-                int rr = 0;
-                int L = 0;
-                int R = 0;
                 for (int m = 0; m < Temp.Length; m++)
                 {
-                    while (ll < Left.Length)
+                    int z = 0;
+                    for (int mm = 0; mm < Tabela.Length; mm++)
                     {
-                        while (rr < Right.Length)
-                        {
-                            if (Left[ll] > Right[rr])
-                            {
-                                L = ll;
-                            }
-                            else
-                            {
-                                R = rr;
-                            }
-                            rr++;
-                        }
-                        ll++;
+                        if (Tabela[mm] > Tabela[z]) { z = mm; }
                     }
-                    if (L > R)
-                    {
-                        Temp[m] = Left[L];
-                        Left[L] = 0;
-                        L = 0;
-                        R = 0;
-
-                    }
-                    else
-                    {
-                        Temp[m] = Right[R];
-                        Right[R] = 0;
-                        L = 0;
-                        R = 0;
-                    }
+                    Temp[m] = Tabela[z];
+                    Tabela[z] = 0;
                 }
+                Temp = Temp.Reverse().ToArray();
                 return Temp;
                 }
             Table=MergeSort(Table);

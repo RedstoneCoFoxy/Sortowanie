@@ -108,7 +108,7 @@ namespace Sortowanie
             Czas.Text = "Wygenerowano";
             var CzasStart = DateTime.Now;
 
-            int[] Bubble(int[] Tabela)
+            int[] Quick(int[] Tabela)
             {
                     if (Tabela.Length == 2)
                     {
@@ -118,7 +118,14 @@ namespace Sortowanie
                             Tabela[1] = Tabela[0];
                             Tabela[0] = x;
                         }
-                    xd.Text = "dupa";
+                        return Tabela;
+                    }
+                    if (Tabela.Length == 1)
+                    {
+                        return Tabela;
+                    }
+                    if (Tabela.Length == 0)
+                    {
                         return Tabela;
                     }
 
@@ -127,63 +134,28 @@ namespace Sortowanie
                     for (int y = 0; y < Tabela.Length; y++)
                     {
                         if (Tabela[y] >= pivot) { WiekszeOdPivota++; }
-                    }
-                    int[] Prawy = new int[WiekszeOdPivota]; 
+                    }                  
+                    int[] Prawy = new int[WiekszeOdPivota];
                     int[] Lewy = new int[Tabela.Length - WiekszeOdPivota]; 
-                    int l = 0;
-                    int p = 0;
 
-                    for (int y = 0; y < Tabela.Length; y++)
-                    {
-                        if (Tabela[y] >= pivot) 
-                        { 
-                        if (Lewy.Length != 0){ Lewy[l] = Tabela[y];
-                            l++;
-                            if (l >= Lewy.Length) { l = Lewy.Length - 1; }
-                            } 
-                        }
-                        else 
-                        {
-                        if (Prawy.Length!=0) { Prawy[p] = Tabela[y]; 
-                            p++;
-                            if (p >= Prawy.Length) { p = Prawy.Length - 1; }
-                            } 
-                        }
-                    }
+                    xd.Text = "Left: "+Lewy.Length.ToString()+"\n";
+                    xd.Text = xd.Text + "Right: "+Prawy.Length.ToString() + "\n";
 
-                    xd.Text = "";
-                    xd.Text = xd.Text+ (Tabela.Length - WiekszeOdPivota).ToString() + " " + WiekszeOdPivota.ToString() + "\n ";
-                    xd.Text = xd.Text+ Lewy.Length.ToString()+ " "+ Prawy.Length.ToString() + "\n";
-                    for (int y = 0; y < Lewy.Length; y++)
-                    {
-                        xd.Text = xd.Text + "L " + Lewy[y].ToString();
-                    }
-                    xd.Text = xd.Text+"\n ";
-                    for (int y = 0; y < Prawy.Length; y++)
-                    {
-                        xd.Text = xd.Text + "P " + Prawy[y].ToString();
-                    }
+                    if (Lewy.Length!=1) { Lewy = Quick(Lewy); }
+                    if (Prawy.Length!=1) { Prawy = Quick(Prawy); }
 
-                    if (Lewy.Length > 1) { Lewy=Bubble(Lewy); }
-                    if (Prawy.Length > 1) { Prawy = Bubble(Prawy); }
-                /*
-                for (int y = 0; y < Lewy.Length; y++)
-                {
-                    xd.Text = xd.Text + "L " + Lewy[y].ToString();
-                }
-                xd.Text = "\n";
-                for (int y = 0; y < Prawy.Length; y++)
-                {
-                    xd.Text = xd.Text + "P " + Prawy[y].ToString();
-                }*/
-                if (Lewy.Length == 0) { Tabela = Prawy; }
-                    if (Prawy.Length == 0) { Tabela = Lewy; }
-                    if (Lewy.Length != 0 && Prawy.Length != 0) { Tabela = Lewy.Concat(Prawy).ToArray(); }
+                    int[] TPivot = new int[1];
+                    TPivot[0] = pivot;
+                    int[] Temp = new int[0];
+                    Temp = Temp.Concat(Lewy).ToArray();
+                    Temp = Temp.Concat(TPivot).ToArray();
+                    Temp = Temp.Concat(Prawy).ToArray();
 
-                    return Tabela;               
+                    xd.Text = xd.Text+ "Temp: " + Temp.Length.ToString();
+                    return Temp;               
             }
 
-            Table=Bubble(Table);
+            Table=Quick(Table);
 
 
             var CzasKoniec = DateTime.Now;

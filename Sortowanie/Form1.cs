@@ -97,7 +97,7 @@ namespace Sortowanie
             Random rnd = new Random();
             for (int i = 0; i < Table.Length; i++)
             {
-                Table[i] = rnd.Next(1, 100);
+                Table[i] = rnd.Next(1, 10);
             }
             Liczby.Text = "";
             for (int y = 0; y < Table.Length; y++)
@@ -110,52 +110,81 @@ namespace Sortowanie
 
             int[] Quick(int[] Tabela)
             {
-                    if (Tabela.Length == 2)
+                if (Tabela.Length == 2)
+                {
+                    if (Tabela[0] > Tabela[1])
                     {
-                        if (Tabela[0] > Tabela[1])
-                        {
-                            int x = Tabela[1];
-                            Tabela[1] = Tabela[0];
-                            Tabela[0] = x;
-                        }
-                        return Tabela;
+                        int x = Tabela[1];
+                        Tabela[1] = Tabela[0];
+                        Tabela[0] = x;
                     }
-                    if (Tabela.Length == 1)
+                    return Tabela;
+                }
+                if (Tabela.Length == 1)
+                {
+                    return Tabela;
+                }
+                if (Tabela.Length == 0)
+                {
+                    return Tabela;
+                }
+                bool PrawaIstnieje = true;
+                bool LewaIstnieje = true;
+
+                int pivot = Tabela[Tabela.Length - 1];
+                int IPivot = Tabela.Length - 1;
+                int WiekszeOdPivota = 0;
+                for (int y = 0; y < Tabela.Length; y++)
+                {
+                    if (Tabela[y] >= pivot && Tabela[y] != Tabela[IPivot]) { WiekszeOdPivota++; }
+                }
+                int[] Prawy = new int[WiekszeOdPivota];
+                int[] Lewy = new int[Tabela.Length - WiekszeOdPivota];
+             
+                int l = 0;
+                int r = 0;
+                for (int y = 0; y < Tabela.Length; y++)
+                {
+                    if (Tabela[y] >= pivot)
                     {
-                        return Tabela;
+                        if (PrawaIstnieje) { if (Tabela[y] != Tabela[IPivot]) { Prawy[r] = Tabela[y]; } }
+                        r++;
                     }
-                    if (Tabela.Length == 0)
+                    else
                     {
-                        return Tabela;
+                        if (LewaIstnieje) { if (Tabela[y] != Tabela[IPivot]) { Lewy[l] = Tabela[y]; } }
+                        l++;
                     }
+                }
+                if (Prawy[0]==0) { PrawaIstnieje = false; }
+                if (Lewy[0]==0) { LewaIstnieje = false; }
+                xd.Text = xd.Text + "========\n";
+                xd.Text = xd.Text + "Left: " + Lewy.Length.ToString() + "\n";
+                xd.Text = xd.Text + "Right: " + Prawy.Length.ToString() + "\n";
 
-                    int pivot = Tabela[Tabela.Length - 1];
-                    int WiekszeOdPivota = 0;
-                    for (int y = 0; y < Tabela.Length; y++)
-                    {
-                        if (Tabela[y] >= pivot) { WiekszeOdPivota++; }
-                    }                  
-                    int[] Prawy = new int[WiekszeOdPivota];
-                    int[] Lewy = new int[Tabela.Length - WiekszeOdPivota]; 
+                if (Lewy.Length != 1 && LewaIstnieje) { Lewy = Quick(Lewy); }
+                if (Prawy.Length != 1 && PrawaIstnieje) { Prawy = Quick(Prawy); }
 
-                    xd.Text = "Left: "+Lewy.Length.ToString()+"\n";
-                    xd.Text = xd.Text + "Right: "+Prawy.Length.ToString() + "\n";
-
-                    if (Lewy.Length!=1) { Lewy = Quick(Lewy); }
-                    if (Prawy.Length!=1) { Prawy = Quick(Prawy); }
+                xd.Text = xd.Text + "\n";
+                if (PrawaIstnieje) {xd.Text = xd.Text + "Left: " + Lewy.Length.ToString() + "\n";}
+                    if (PrawaIstnieje) { xd.Text = xd.Text + "Right: " + Prawy.Length.ToString() + "\n"; }
 
                     int[] TPivot = new int[1];
                     TPivot[0] = pivot;
                     int[] Temp = new int[0];
-                    Temp = Temp.Concat(Lewy).ToArray();
+
+                    xd.Text = xd.Text + "TT: " + Temp.Length.ToString();
+
                     Temp = Temp.Concat(TPivot).ToArray();
-                    Temp = Temp.Concat(Prawy).ToArray();
+                    if (LewaIstnieje) { Temp = Lewy.Concat(TPivot).ToArray(); }
+                    if (PrawaIstnieje) { Temp = Temp.Concat(Prawy).ToArray(); }
 
                     xd.Text = xd.Text+ "Temp: " + Temp.Length.ToString();
+
                     return Temp;               
             }
-
-            Table=Quick(Table);
+            xd.Text = "";
+            Table =Quick(Table);
 
 
             var CzasKoniec = DateTime.Now;

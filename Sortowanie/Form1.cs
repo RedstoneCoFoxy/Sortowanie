@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Sortowanie
 {
-    public partial class Form1 : Form
+    public partial class f : Form
     {
-        public Form1()
+        public f()
         {
             InitializeComponent();
             
@@ -249,6 +249,67 @@ namespace Sortowanie
                     B++;
             }
             //Table=Table.Reverse().ToArray();
+            var CzasKoniec = DateTime.Now;
+            var CzasTrwania = CzasKoniec - CzasStart;
+            Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();
+
+            Wynik.Text = "";
+            for (int y = 0; y < Table.Length; y++)
+            {
+                if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
+                Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+            }
+        }
+
+        private void ButtonMergeSort_Click(object sender, EventArgs e)
+        {
+            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
+            int[] Table = new int[generujliczby];
+            Random rnd = new Random();
+            for (int i = 0; i < Table.Length; i++)
+            {
+                Table[i] = rnd.Next(1, 100);
+            }
+            Liczby.Text = "";
+            for (int y = 0; y < Table.Length; y++)
+            {
+                if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
+                Liczby.Text = Liczby.Text + " " + Table[y].ToString();
+            }
+            Czas.Text = "Wygenerowano";
+            var CzasStart = DateTime.Now;
+               int[] MergeSort(int[] Tabela)
+                {
+                    if (Tabela.Length == 1)
+                    {
+                        return Tabela;
+                    }
+                    if (Tabela.Length == 2)
+                    {
+                        if (Tabela[0]> Tabela[1])
+                        {
+                            int x = Tabela[0];
+                            Tabela[0] = Tabela[1];
+                            Tabela[1] = x;
+                        xd.Text = xd.Text + "P ";
+                        }
+                        return Tabela;
+                    }
+                    int n = Tabela.Length / 2;
+                    int[] Left = new int[n];
+                    int[] Right = new int[Tabela.Length- n];
+                    int xx = 0;
+                    int yy = 0;
+                    for(int y = 0; y < Tabela.Length; y++)
+                {
+                    if (y < n) { Left[xx] = Tabela[y];xx++; } else { Right[yy] = Tabela[y];yy++; }
+                }
+                Left = MergeSort(Left);
+                Right = MergeSort(Right);
+                Tabela = Right.Concat(Left).ToArray();
+                return Tabela;
+                }
+            Table=MergeSort(Table);
             var CzasKoniec = DateTime.Now;
             var CzasTrwania = CzasKoniec - CzasStart;
             Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();

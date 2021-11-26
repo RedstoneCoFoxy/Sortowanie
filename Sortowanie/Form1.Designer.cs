@@ -1,7 +1,7 @@
 ﻿
 namespace Sortowanie
 {
-    partial class Form1
+    partial class f
     {
         /// <summary>
         ///  Required designer variable.
@@ -40,6 +40,7 @@ namespace Sortowanie
             this.ButtonQuickSort = new System.Windows.Forms.Button();
             this.xd = new System.Windows.Forms.Label();
             this.ButtonInsertSort = new System.Windows.Forms.Button();
+            this.ButtonMergeSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownLiczby)).BeginInit();
             this.SuspendLayout();
             // 
@@ -161,11 +162,22 @@ namespace Sortowanie
             this.ButtonInsertSort.UseVisualStyleBackColor = true;
             this.ButtonInsertSort.Click += new System.EventHandler(this.ButtonInsertSort_Click);
             // 
-            // Form1
+            // ButtonMergeSort
+            // 
+            this.ButtonMergeSort.Location = new System.Drawing.Point(127, 41);
+            this.ButtonMergeSort.Name = "ButtonMergeSort";
+            this.ButtonMergeSort.Size = new System.Drawing.Size(129, 23);
+            this.ButtonMergeSort.TabIndex = 11;
+            this.ButtonMergeSort.Text = "Merge";
+            this.ButtonMergeSort.UseVisualStyleBackColor = true;
+            this.ButtonMergeSort.Click += new System.EventHandler(this.ButtonMergeSort_Click);
+            // 
+            // f
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.ButtonMergeSort);
             this.Controls.Add(this.ButtonInsertSort);
             this.Controls.Add(this.xd);
             this.Controls.Add(this.ButtonQuickSort);
@@ -177,7 +189,7 @@ namespace Sortowanie
             this.Controls.Add(this.Liczby);
             this.Controls.Add(this.Wynik);
             this.Controls.Add(this.ButtonBubbleSort);
-            this.Name = "Form1";
+            this.Name = "f";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownLiczby)).EndInit();
             this.ResumeLayout(false);
@@ -198,6 +210,7 @@ namespace Sortowanie
         private System.Windows.Forms.Button ButtonQuickSort;
         private System.Windows.Forms.Label xd;
         private System.Windows.Forms.Button ButtonInsertSort;
+        private System.Windows.Forms.Button ButtonMergeSort;
     }
 }
 

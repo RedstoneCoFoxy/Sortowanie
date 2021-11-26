@@ -288,10 +288,9 @@ namespace Sortowanie
                     {
                         if (Tabela[0]> Tabela[1])
                         {
-                            int x = Tabela[0];
+                            int o = Tabela[0];
                             Tabela[0] = Tabela[1];
-                            Tabela[1] = x;
-                        xd.Text = xd.Text + "P ";
+                            Tabela[1] = o;
                         }
                         return Tabela;
                     }
@@ -306,8 +305,47 @@ namespace Sortowanie
                 }
                 Left = MergeSort(Left);
                 Right = MergeSort(Right);
-                Tabela = Right.Concat(Left).ToArray();
-                return Tabela;
+                Tabela = Left.Concat(Right).ToArray();
+                int[] Temp = new int[Tabela.Length];
+                int ll = 0;
+                int rr = 0;
+                int L = 0;
+                int R = 0;
+                for (int m = 0; m < Temp.Length; m++)
+                {
+                    while (ll < Left.Length)
+                    {
+                        while (rr < Right.Length)
+                        {
+                            if (Left[ll] > Right[rr])
+                            {
+                                L = ll;
+                            }
+                            else
+                            {
+                                R = rr;
+                            }
+                            rr++;
+                        }
+                        ll++;
+                    }
+                    if (L > R)
+                    {
+                        Temp[m] = Left[L];
+                        Left[L] = 0;
+                        L = 0;
+                        R = 0;
+
+                    }
+                    else
+                    {
+                        Temp[m] = Right[R];
+                        Right[R] = 0;
+                        L = 0;
+                        R = 0;
+                    }
+                }
+                return Temp;
                 }
             Table=MergeSort(Table);
             var CzasKoniec = DateTime.Now;

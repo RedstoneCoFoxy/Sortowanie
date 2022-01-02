@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Sortowanie
 {
     public partial class f : Form
     {
+        int[] Table = new int[0];
         public f()
         {
             InitializeComponent();
@@ -333,6 +335,58 @@ namespace Sortowanie
             {
                 if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
                 Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+            }
+        }
+
+        private void ButtonZapisz_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog Zapis = new SaveFileDialog();
+
+            Zapis.Filter = "Plik (*.txt)|*.txt";
+            Zapis.FilterIndex = 2;
+            Zapis.RestoreDirectory = true;
+            if (Zapis.ShowDialog() == DialogResult.OK)
+            {
+                int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
+                string[] Table = new string[generujliczby];
+                Random rnd = new Random();
+                for (int i = 0; i < Table.Length; i++)
+                {
+                    Table[i] = rnd.Next(1, 100).ToString();
+                }
+
+                File.WriteAllLinesAsync(Zapis.FileName, Table);
+            }
+        }
+
+        private void ButtonOtworz_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Otworz = new OpenFileDialog();
+
+            Otworz.Filter = "Plik (*.txt)|*.txt";
+            Otworz.FilterIndex = 2;
+            Otworz.RestoreDirectory = true;
+            if (Otworz.ShowDialog() == DialogResult.OK)
+            {
+                var fileStream = Otworz.OpenFile();
+
+                using (StreamReader reader = new StreamReader(Otworz.FileName))
+                {
+                    while (reader.Peek() >= 0)
+                    {
+                        int linia = Int32.Parse(reader.ReadLine().ToString());
+                        int[] Temp = new int[1];
+                        Temp[0] = linia;
+                        Table = Table.Concat(Temp).ToArray();
+                    }
+                }
+                Liczby.Text = "";
+                for (int y = 0; y < Table.Length; y++)
+                {
+                    if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
+                    Liczby.Text = Liczby.Text + " " + Table[y].ToString();
+                }
+                Czas.Text = "Zaladowano";
             }
         }
     }

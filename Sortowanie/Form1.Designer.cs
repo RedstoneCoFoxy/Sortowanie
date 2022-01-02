@@ -41,6 +41,8 @@ namespace Sortowanie
             this.xd = new System.Windows.Forms.Label();
             this.ButtonInsertSort = new System.Windows.Forms.Button();
             this.ButtonMergeSort = new System.Windows.Forms.Button();
+            this.ButtonZapisz = new System.Windows.Forms.Button();
+            this.ButtonOtworz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownLiczby)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,11 +174,33 @@ namespace Sortowanie
             this.ButtonMergeSort.UseVisualStyleBackColor = true;
             this.ButtonMergeSort.Click += new System.EventHandler(this.ButtonMergeSort_Click);
             // 
+            // ButtonZapisz
+            // 
+            this.ButtonZapisz.Location = new System.Drawing.Point(762, 12);
+            this.ButtonZapisz.Name = "ButtonZapisz";
+            this.ButtonZapisz.Size = new System.Drawing.Size(75, 23);
+            this.ButtonZapisz.TabIndex = 12;
+            this.ButtonZapisz.Text = "Zapisz";
+            this.ButtonZapisz.UseVisualStyleBackColor = true;
+            this.ButtonZapisz.Click += new System.EventHandler(this.ButtonZapisz_Click);
+            // 
+            // ButtonOtworz
+            // 
+            this.ButtonOtworz.Location = new System.Drawing.Point(843, 12);
+            this.ButtonOtworz.Name = "ButtonOtworz";
+            this.ButtonOtworz.Size = new System.Drawing.Size(75, 23);
+            this.ButtonOtworz.TabIndex = 13;
+            this.ButtonOtworz.Text = "Otworz";
+            this.ButtonOtworz.UseVisualStyleBackColor = true;
+            this.ButtonOtworz.Click += new System.EventHandler(this.ButtonOtworz_Click);
+            // 
             // f
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.ButtonOtworz);
+            this.Controls.Add(this.ButtonZapisz);
             this.Controls.Add(this.ButtonMergeSort);
             this.Controls.Add(this.ButtonInsertSort);
             this.Controls.Add(this.xd);
@@ -211,6 +235,8 @@ namespace Sortowanie
         private System.Windows.Forms.Label xd;
         private System.Windows.Forms.Button ButtonInsertSort;
         private System.Windows.Forms.Button ButtonMergeSort;
+        private System.Windows.Forms.Button ButtonZapisz;
+        private System.Windows.Forms.Button ButtonOtworz;
     }
 }
 

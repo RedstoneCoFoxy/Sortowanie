@@ -336,5 +336,54 @@ namespace Sortowanie
             }
         }
 
+        private void ButtonHeapSort_Click(object sender, EventArgs e)
+        {
+            var CzasStart = DateTime.Now;
+            xd.Text = "";
+
+            void Heap(int[] Tabela,int n, int i)
+            {
+                int largest = i;
+                int lewy = 2 * i + 1;
+                int prawy = 2 * i + 2;
+                if (lewy < n && Tabela[lewy]>Tabela[largest]) { largest = lewy; }
+                if (prawy < n && Tabela[prawy] > Tabela[largest]) { largest = prawy; }
+                if (largest != i)
+                {
+                    int k = Tabela[i];
+                    Tabela[i] = Tabela[largest];
+                    Tabela[largest] = k;
+                    Heap(Tabela, n, largest);
+                }
+            }
+
+            void HeapSort(int[] Tabela,int rozmiar)
+            {
+                for(int i = rozmiar / 2 - 1; i >= 0; i--)
+                {
+                    Heap(Tabela, rozmiar, i);
+                }
+                for (int i = rozmiar - 1; i >= 0; i--)
+                {
+                    int k = Tabela[0];
+                    Tabela[0] = Tabela[i];
+                    Tabela[i] = k;
+                    Heap(Tabela,i,0);
+                }
+            }
+            int[] TTTable = Table;
+            HeapSort(TTTable,TTTable.Length);
+
+            var CzasKoniec = DateTime.Now;
+            var CzasTrwania = CzasKoniec - CzasStart;
+            Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();
+
+            Wynik.Text = "";
+            for (int y = 0; y < TTTable.Length; y++)
+            {
+                if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
+                Wynik.Text = Wynik.Text + " " + TTTable[y].ToString();
+            }
+        }
     }//k
 }

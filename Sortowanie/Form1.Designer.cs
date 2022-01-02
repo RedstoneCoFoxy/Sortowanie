@@ -43,6 +43,7 @@ namespace Sortowanie
             this.ButtonMergeSort = new System.Windows.Forms.Button();
             this.ButtonZapisz = new System.Windows.Forms.Button();
             this.ButtonOtworz = new System.Windows.Forms.Button();
+            this.ButtonHeapSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownLiczby)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,11 +195,22 @@ namespace Sortowanie
             this.ButtonOtworz.UseVisualStyleBackColor = true;
             this.ButtonOtworz.Click += new System.EventHandler(this.ButtonOtworz_Click);
             // 
+            // ButtonHeapSort
+            // 
+            this.ButtonHeapSort.Location = new System.Drawing.Point(262, 41);
+            this.ButtonHeapSort.Name = "ButtonHeapSort";
+            this.ButtonHeapSort.Size = new System.Drawing.Size(129, 23);
+            this.ButtonHeapSort.TabIndex = 14;
+            this.ButtonHeapSort.Text = "Heap";
+            this.ButtonHeapSort.UseVisualStyleBackColor = true;
+            this.ButtonHeapSort.Click += new System.EventHandler(this.ButtonHeapSort_Click);
+            // 
             // f
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.ButtonHeapSort);
             this.Controls.Add(this.ButtonOtworz);
             this.Controls.Add(this.ButtonZapisz);
             this.Controls.Add(this.ButtonMergeSort);
@@ -237,6 +249,7 @@ namespace Sortowanie
         private System.Windows.Forms.Button ButtonMergeSort;
         private System.Windows.Forms.Button ButtonZapisz;
         private System.Windows.Forms.Button ButtonOtworz;
+        private System.Windows.Forms.Button ButtonHeapSort;
     }
 }
 

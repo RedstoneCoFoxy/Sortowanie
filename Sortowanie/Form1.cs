@@ -83,84 +83,38 @@ namespace Sortowanie
         {
             var CzasStart = DateTime.Now;
 
-            int[] Quick(int[] Tabela)
+            int Partition(int[] Tabela, int L, int H)
             {
-                if (Tabela.Length == 2)
+                int p = Tabela[H];
+                int i = L - 1;
+                for (int x=L;x<=H-1;x++)
                 {
-                    if (Tabela[0] > Tabela[1])
+                    if (Tabela[x]<p)
                     {
-                        int x = Tabela[1];
-                        Tabela[1] = Tabela[0];
-                        Tabela[0] = x;
-                    }
-                    return Tabela;
-                }
-                if (Tabela.Length == 1)
-                {
-                    return Tabela;
-                }
-                if (Tabela.Length == 0)
-                {
-                    return Tabela;
-                }
-                bool PrawaIstnieje = true;
-                bool LewaIstnieje = true;
-
-                int pivot = Tabela[Tabela.Length - 1];
-                int IPivot = Tabela.Length - 1;
-                int WiekszeOdPivota = 0;
-                for (int y = 0; y < Tabela.Length; y++)
-                {
-                    if (Tabela[y] >= pivot && Tabela[y] != Tabela[IPivot]) { WiekszeOdPivota++; }
-                }
-                int[] Prawy = new int[WiekszeOdPivota];
-                int[] Lewy = new int[Tabela.Length - WiekszeOdPivota];
-             
-                int l = 0;
-                int r = 0;
-                for (int y = 0; y < Tabela.Length; y++)
-                {
-                    if (Tabela[y] >= pivot)
-                    {
-                        if (PrawaIstnieje) { if (Tabela[y] != Tabela[IPivot]) { Prawy[r] = Tabela[y]; } }
-                        r++;
-                    }
-                    else
-                    {
-                        if (LewaIstnieje) { if (Tabela[y] != Tabela[IPivot]) { Lewy[l] = Tabela[y]; } }
-                        l++;
+                        i++;
+                        int v = Tabela[i];
+                        Tabela[i] = Tabela[x];
+                        Tabela[x] = v;
                     }
                 }
-                if (Prawy[0]==0) { PrawaIstnieje = false; }
-                if (Lewy[0]==0) { LewaIstnieje = false; }
-                xd.Text = xd.Text + "========\n";
-                xd.Text = xd.Text + "Left: " + Lewy.Length.ToString() + "\n";
-                xd.Text = xd.Text + "Right: " + Prawy.Length.ToString() + "\n";
+                int k = Tabela[i+1];
+                Tabela[i+1] = Tabela[H];
+                Tabela[H] = k;
+                return i + 1;
+            }
 
-                if (Lewy.Length != 1 && LewaIstnieje) { Lewy = Quick(Lewy); }
-                if (Prawy.Length != 1 && PrawaIstnieje) { Prawy = Quick(Prawy); }
-
-                xd.Text = xd.Text + "\n";
-                if (PrawaIstnieje) {xd.Text = xd.Text + "Left: " + Lewy.Length.ToString() + "\n";}
-                    if (PrawaIstnieje) { xd.Text = xd.Text + "Right: " + Prawy.Length.ToString() + "\n"; }
-
-                    int[] TPivot = new int[1];
-                    TPivot[0] = pivot;
-                    int[] Temp = new int[0];
-
-                    xd.Text = xd.Text + "TT: " + Temp.Length.ToString();
-
-                    Temp = Temp.Concat(TPivot).ToArray();
-                    if (LewaIstnieje) { Temp = Lewy.Concat(TPivot).ToArray(); }
-                    if (PrawaIstnieje) { Temp = Temp.Concat(Prawy).ToArray(); }
-
-                    xd.Text = xd.Text+ "Temp: " + Temp.Length.ToString();
-
-                    return Temp;               
+            void QuickSort(int[] Tabela, int L, int H)
+            {
+                if (L < H)
+                {
+                    int p = Partition(Tabela, L, H);
+                    QuickSort(Tabela,L,p-1);
+                    QuickSort(Tabela,p+1,H);
+                }                       
             }
             xd.Text = "";
-            int[] TTTable =Quick(Table);
-
+            int[] TTTable = Table;
+            QuickSort(TTTable, 0, Table.Length - 1);
 
             var CzasKoniec = DateTime.Now;
             var CzasTrwania = CzasKoniec - CzasStart;

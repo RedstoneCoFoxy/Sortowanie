@@ -35,20 +35,7 @@ namespace Sortowanie
         }
         public void ButtonBubbleSort_Click(object sender, EventArgs e)
         {
-            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
-            int[] Table = new int[generujliczby];
-            Random rnd = new Random();
-            for (int i = 0; i < Table.Length; i++)
-            {
-                Table[i] = rnd.Next(1, 100);
-            }
-            Liczby.Text = "";
-            for (int y = 0; y < Table.Length; y++)
-            {
-                if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
-                Liczby.Text = Liczby.Text + " " + Table[y].ToString();
-            }
-            Czas.Text = "Wygenerowano";
+            int[] TTTable = Table;
             var CzasStart = DateTime.Now;
 
             bool Sortuj = true;
@@ -56,28 +43,28 @@ namespace Sortowanie
             int p = 1;
             while (Sortuj)
             {
-                for (int i = 0; i < Table.Length-p; i++)
+                for (int i = 0; i < TTTable.Length-p; i++)
                 {
-                    if (Table[i]> Table[i+1]) 
+                    if (TTTable[i]> TTTable[i+1]) 
                     {
-                        x = Table[i + 1];
-                        Table[i + 1] = Table[i];
-                        Table[i] = x;
+                        x = TTTable[i + 1];
+                        TTTable[i + 1] = TTTable[i];
+                        TTTable[i] = x;
                         x = 0;
                     }
                 }
                 p = p + 1;
-                if (p == Table.Length) { Sortuj = false; }
+                if (p == TTTable.Length) { Sortuj = false; }
             }
             var CzasKoniec = DateTime.Now;
             var CzasTrwania = CzasKoniec - CzasStart;
             Czas.Text = "Czas sortowania: "+CzasTrwania.ToString();
 
             Wynik.Text = "";
-            for (int y = 0; y < Table.Length; y++)
+            for (int y = 0; y < TTTable.Length; y++)
             {
                 if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
-                Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+                Wynik.Text = Wynik.Text + " " + TTTable[y].ToString();
             }
 
         }
@@ -94,20 +81,6 @@ namespace Sortowanie
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
-            int[] Table = new int[generujliczby];
-            Random rnd = new Random();
-            for (int i = 0; i < Table.Length; i++)
-            {
-                Table[i] = rnd.Next(1, 10);
-            }
-            Liczby.Text = "";
-            for (int y = 0; y < Table.Length; y++)
-            {
-                if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
-                Liczby.Text = Liczby.Text + " " + Table[y].ToString();
-            }
-            Czas.Text = "Wygenerowano";
             var CzasStart = DateTime.Now;
 
             int[] Quick(int[] Tabela)
@@ -186,7 +159,7 @@ namespace Sortowanie
                     return Temp;               
             }
             xd.Text = "";
-            Table =Quick(Table);
+            int[] TTTable =Quick(Table);
 
 
             var CzasKoniec = DateTime.Now;
@@ -194,10 +167,10 @@ namespace Sortowanie
             Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();
 
             Wynik.Text = "";
-            for (int y = 0; y < Table.Length; y++)
+            for (int y = 0; y < TTTable.Length; y++)
             {
                 if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
-                Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+                Wynik.Text = Wynik.Text + " " + TTTable[y].ToString();
             }
         }
 
@@ -208,25 +181,12 @@ namespace Sortowanie
 
         private void ButtonInsertSort_Click(object sender, EventArgs e)
         {
-            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
-            int[] Table = new int[generujliczby];
-            Random rnd = new Random();
-            for (int i = 0; i < Table.Length; i++)
-            {
-                Table[i] = rnd.Next(1, 100);
-            }
-            Liczby.Text = "";
-            for (int y = 0; y < Table.Length; y++)
-            {
-                if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
-                Liczby.Text = Liczby.Text + " " + Table[y].ToString();
-            }
-            Czas.Text = "Wygenerowano";
+            int[] TTTable = Table;
             var CzasStart = DateTime.Now;
 
             bool Sortuj = true;
             int B = 1;
-            while ( B < Table.Length)
+            while ( B < TTTable.Length)
                 {
                     Sortuj = true;
                     int ii = B;
@@ -235,11 +195,11 @@ namespace Sortowanie
 
                         int xx = 0;
                         
-                        if (Table[ii-1] > Table[ii] )
+                        if (TTTable[ii-1] > TTTable[ii] )
                         {
-                            xx = Table[ii];
-                            Table[ii ] = Table[ii - 1];
-                            Table[ii- 1] = xx;
+                            xx = TTTable[ii];
+                            TTTable[ii ] = TTTable[ii - 1];
+                            TTTable[ii- 1] = xx;
                             ii--;
                             if (ii == 0) { Sortuj = false; }
                         }
@@ -251,90 +211,122 @@ namespace Sortowanie
                     }
                     B++;
             }
-            //Table=Table.Reverse().ToArray();
             var CzasKoniec = DateTime.Now;
             var CzasTrwania = CzasKoniec - CzasStart;
             Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();
 
             Wynik.Text = "";
-            for (int y = 0; y < Table.Length; y++)
+            for (int y = 0; y < TTTable.Length; y++)
             {
                 if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
-                Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+                Wynik.Text = Wynik.Text + " " + TTTable[y].ToString();
             }
         }
 
         private void ButtonMergeSort_Click(object sender, EventArgs e)
         {
-            int generujliczby = Decimal.ToInt32(NumericUpDownLiczby.Value);
-            int[] Table = new int[generujliczby];
-            Random rnd = new Random();
-            for (int i = 0; i < Table.Length; i++)
-            {
-                Table[i] = rnd.Next(1, 10);
-            }
-            Liczby.Text = "";
-            for (int y = 0; y < Table.Length; y++)
-            {
-                if (y % 25 == 0) { Liczby.Text = Liczby.Text + "\n "; }
-                Liczby.Text = Liczby.Text + " " + Table[y].ToString();
-            }
-            Czas.Text = "Wygenerowano";
             var CzasStart = DateTime.Now;
             xd.Text = "";
-               int[] MergeSort(int[] Tabela)
-                {
-                    if (Tabela.Length == 1)
-                    {
-                    return Tabela;
+               int[] Merge(int[] Lewa, int[] Prawa)
+            {
+                int[] Temp = new int[Lewa.Length + Prawa.Length];
+                int i = 0;
+                int ip = 0;
+                int il = 0;
 
-                    }
-                    if (Tabela.Length == 2)
+                while ( il < Lewa.Length || ip < Prawa.Length)
+                {
+                    //xd.Text = xd.Text + " ";
+                    if (il < Lewa.Length && ip < Prawa.Length)
                     {
-                        if (Tabela[0]> Tabela[1])
+                        if(Lewa[il] <= Prawa[ip])
                         {
-                            int o = Tabela[0];
-                            Tabela[0] = Tabela[1];
-                            Tabela[1] = o;
+                            Temp[i] = Lewa[il];
+                            il++;
+                            i++;
+                            //xd.Text = xd.Text + "l";
                         }
-                    return Tabela;
+                        else
+                        {
+                            Temp[i] = Prawa[ip];
+                            ip++;
+                            i++;
+                            //xd.Text = xd.Text + "p";
+                        }
                     }
-                    int n = Tabela.Length / 2;
-                    int[] Left = new int[n];
-                    int[] Right = new int[Tabela.Length- n];
-                    int xx = 0;
-                    int yy = 0;
-                    for(int y = 0; y < Tabela.Length; y++)
-                {
-                    if (y < n) { Left[xx] = Tabela[y];xx++; } else { Right[yy] = Tabela[y];yy++; }
-                }
-                Left = MergeSort(Left);
-                Right = MergeSort(Right);
-                Tabela = Left.Concat(Right).ToArray();
-                int[] Temp = new int[Tabela.Length];
-                for (int m = 0; m < Temp.Length; m++)
-                {
-                    int z = 0;
-                    for (int mm = 0; mm < Tabela.Length; mm++)
+                    else
                     {
-                        if (Tabela[mm] > Tabela[z]) { z = mm; }
+                        if (il<Lewa.Length)
+                        {
+                            Temp[i] = Lewa[il];
+                            il++;
+                            i++;
+                            //xd.Text = xd.Text + "l1";
+                        }
+                        else
+                        {
+                            if (ip<Prawa.Length)
+                            {
+                                Temp[i] = Prawa[ip];
+                                ip++;
+                                i++;
+                                //xd.Text = xd.Text + "p1";
+                            }
+                        }
                     }
-                    Temp[m] = Tabela[z];
-                    Tabela[z] = 0;
                 }
-                Temp = Temp.Reverse().ToArray();
+                //xd.Text = xd.Text + "|||";
                 return Temp;
-                }
-            Table=MergeSort(Table);
+            }
+
+
+               int[] MergeSort(int[] Tabela)
+               {
+                    int[] Lewa = new int[0];
+                    int[] Prawa = new int[0];
+                    int[] Temp = new int[Tabela.Length];
+                    if (Tabela.Length <= 1)
+                    {
+                         return Tabela;
+                    }
+                    int Srodek = Tabela.Length / 2;
+                    Lewa = new int[Srodek];
+                    if (Tabela.Length % 2 == 0)
+                    {
+                        Prawa = new int[Srodek];
+                    }
+                    else
+                    {
+                        Prawa = new int[Srodek + 1];
+                        
+                    }
+
+                    for(int c = 0; c < Srodek; c++)
+                    {
+                        Lewa[c] = Tabela[c];
+                    }
+                    int x = 0;
+                    for (int c = Srodek; c < Tabela.Length; c++)
+                    {
+                        Prawa[x] = Tabela[c];
+                        x++;
+                    }
+                    Lewa = MergeSort(Lewa);
+                    Prawa = MergeSort(Prawa);
+                    Temp = Merge(Lewa, Prawa);
+                xd.Text = xd.Text + "d";
+                return Temp;
+               }
+            int[] TTTable=MergeSort(Table);
             var CzasKoniec = DateTime.Now;
             var CzasTrwania = CzasKoniec - CzasStart;
             Czas.Text = "Czas sortowania: " + CzasTrwania.ToString();
 
             Wynik.Text = "";
-            for (int y = 0; y < Table.Length; y++)
+            for (int y = 0; y < TTTable.Length; y++)
             {
                 if (y % 25 == 0) { Wynik.Text = Wynik.Text + "\n "; }
-                Wynik.Text = Wynik.Text + " " + Table[y].ToString();
+                Wynik.Text = Wynik.Text + " " + TTTable[y].ToString();
             }
         }
 
@@ -389,5 +381,6 @@ namespace Sortowanie
                 Czas.Text = "Zaladowano";
             }
         }
-    }
+
+    }//k
 }
